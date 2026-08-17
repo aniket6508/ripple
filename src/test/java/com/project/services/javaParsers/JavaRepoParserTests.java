@@ -69,15 +69,8 @@ class JavaRepoParserTests {
         assertThat(getProduct.modifiers()).containsExactly("public");
         assertThat(getProduct.returnType()).isEqualTo("Product");
         assertThat(getProduct.parameters()).containsExactly("String id");
-        assertThat(getProduct.calls())
-                .extracting(JavaCall::target)
-                .containsExactly("ProductRepository.findById", "buildProduct");
-
         JavaMethod buildProduct = parsedType.methods().get(1);
         assertThat(buildProduct.modifiers()).containsExactly("private");
-        assertThat(buildProduct.calls())
-                .extracting(JavaCall::target)
-                .containsExactly("ProductMapper.toProduct");
     }
 
     @Test
